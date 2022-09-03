@@ -1,0 +1,309 @@
+body {
+    background-color: #F6F6F6;
+}
+
+.relative {
+    position: relative;
+}
+
+.back {
+    outline: none;
+    border: none;
+    width: 10px;
+    height: 16px;
+    position: absolute;
+    top: 4%;
+    left: 4.1%;
+    background: url("../assets/back_mobile.png") no-repeat center;
+    background-size: contain;
+}
+
+.form__title__wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 31px;
+}
+
+.form__title {
+    color: #232323;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.form__number {
+    color: #898989;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+}
+
+
+.form__title.next {
+    display: none;
+}
+
+form {
+    display: inline-block;
+    background-color: #FFFFFF;
+    margin-top: 11px;
+    padding: 14px 0 0 16px;
+    border-radius: 12px 12px 0 0;
+}
+
+.input__wrapper {
+    margin-top: 24px;
+}
+
+label, .label {
+    font-family: 'Helvetica Neue Medium', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+}
+
+input {
+    margin: 8px 0;
+    padding: 0 16px;
+    border: 1.8px solid #8AC0E2;
+    border-radius: 8px;
+    width: 326px;
+    height: 60px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #000000;
+}
+
+input:focus {
+    outline: none;
+    border-color: #6499FF;
+    background-color: rgba(43, 75, 242, 0.06);
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.invalid input {
+    border-color: #E52F2F;
+}
+
+.invalid label, .invalid .hint, .invalid .label {
+    color: #E52F2F;
+}
+
+.hint {
+    font-family: 'Helvetica Neue Light', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    color: #2E2E2E;
+}
+
+.submit {
+    margin: 43px 16px 58px 0;
+    float: right;
+    outline: none;
+    border: none;
+    width: 132px;
+    height: 46px;
+    background: #62A1EB;
+    border-radius: 8px;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Helvetica Neue Medium', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.dropdown {
+    margin-top: 46px;
+    width: 358px;
+    height: 60px;
+    background-color: #EBEBEB;
+    border-radius: 8px;
+}
+
+.dropdown.invalid .dropdown__control  {
+    border: 1.8px solid #E52F2F;
+}
+
+.dropdown__value-container, .dropdown__indicator {
+    all: unset!important;
+}
+
+.dropdown__indicator-separator, .dropdown__indicator svg {
+    display: none;
+}
+
+.dropdown .dropdown__control {
+    box-shadow: none;
+    border: none;
+    padding: 19px 16px 20px;
+    background-color: #EBEBEB;
+    border-radius: 8px;
+    height: 60px;
+}
+
+.dropdown .dropdown__placeholder, .dropdown .dropdown__single-value {
+    font-family: 'Helvetica Neue Medium', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    letter-spacing: 0.04em;
+}
+
+.dropdown__indicators {
+    top: 2px;
+    right: 5px;
+    box-sizing: border-box;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background: url('../assets/dropdown_arrow.svg') no-repeat center;
+    background-size: contain;
+}
+
+.dropdown .dropdown__menu {
+    margin: 0;
+    padding: 0;
+    filter: drop-shadow(0px 4px 34px rgba(0, 0, 0, 0.25));
+    border-radius: 8px;
+}
+
+.dropdown .dropdown__menu-list {
+    border-radius: 8px;
+    padding: 0;
+}
+
+.dropdown__option {
+    height: 41px;
+    padding: 10px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    background-color: #FFFFFF!important;
+}
+
+.dropdown .dropdown__option--is-focused, .dropdown .dropdown__option--is-selected,
+.dropdown .dropdown__option--is-selected:active {
+    background-color: #E7F0F8!important;
+    color: #000000;
+}
+
+.redberry__logo__circle {
+    display: none;
+}
+
+
+@media only screen and (min-width: 980px) {
+
+    .back {
+        top: 53px;
+        left: 70px;
+        width: 53px;
+        height: 53px;
+        background-image: url("../assets/back.svg");
+        cursor: pointer;
+    }
+
+    .form__title__wrapper {
+        flex-direction: row;
+        margin-top: 91px;
+    }
+
+    .form__number {
+        display: none;
+    }
+
+    .form__title.next {
+        display: inline;
+        cursor: pointer;
+    }
+
+    .form__title.laptop {
+        margin-left: 66px;
+    }
+
+    .employee__underline {
+        position: absolute;
+        top: 122px;
+        left: 738px;
+        width: 145px;
+        height: 2px;
+        background-color: #000000;
+    }
+
+    form {
+        margin: 42px 0 197px 347px;
+        padding: 48px 174px 44px;
+        width: 878px;
+        border-radius: 18px;
+    }
+
+    .input__wrapper {
+        margin-top: 48px;
+        width: 100%;
+    }
+
+    .name__inputs__wrapper {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .name__inputs__wrapper input {
+        width: 371.5px;
+        margin-right: 66.5px;
+    }
+
+    input {
+        display: block;
+        width: 846px;
+    }
+
+    .submit {
+        margin: 43px 0 0 0;
+        font-weight: 400;
+        width: 176px;
+        height: 60px;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .dropdown {
+        margin-top: 53px;
+        width: 882px;
+    }
+
+    #phone + .hint {
+        visibility: hidden;
+    }
+
+    #phone + .hint:before {
+        visibility: visible;
+        content: 'უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს'
+    }
+
+    .redberry__logo__circle {
+        display: block;
+        height: 85px;
+        width: 85px;
+        position: absolute;
+        bottom: 45px;
+        left: 917px;
+    }
+
+}

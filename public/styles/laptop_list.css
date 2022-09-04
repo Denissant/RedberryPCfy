@@ -1,0 +1,103 @@
+.page__title {
+    margin: 31px 0 7px;
+    font-family: 'Helvetica Neue Bold', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.laptops .laptop {
+    width: 358px;
+    height: 123px;
+    margin: 26px 16px;
+    border: 1px solid #AED1EA;
+    border-radius: 10px;
+    background-color: #EAFAFF;
+    display: flex;
+}
+
+.laptop img {
+    margin: 7px 16px 7px 7px;
+    width: 164px;
+    height: 109px;
+    border-radius: 6px;
+}
+
+.laptop .info__wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.laptop .owner__name {
+    margin-top: 19px;
+    font-family: 'Helvetica Neue Medium', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #2E2E2E;
+}
+
+.laptop .laptop__name {
+    margin: 8px 0 11px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #2E2E2E;
+}
+
+.laptop a {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #4386A9;
+}
+
+
+@media only screen and (min-width: 980px) {
+
+    .page__title {
+        margin: 74px 0 38px;
+        font-family: 'Helvetica Neue Bold', sans-serif;
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 21px;
+        text-align: center;
+    }
+
+    .laptops {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 0 52px 371px;
+    }
+
+    .laptops .laptop {
+        margin: 55px 50px 0 0;
+        width: 560px;
+        height: 205px;
+        border-radius: 20px;
+    }
+
+    .laptop img {
+        margin: 14px 28px 14px 14px;
+        width: 266px;
+        height: 178px;
+        border-radius: 10px;
+    }
+
+    .laptop .owner__name {
+        margin-top: 45px;
+        font-size: 18px;
+    }
+
+    .laptop .laptop__name {
+        margin: 18px 0 40px;
+    }
+
+    .laptop a {
+        font-size: 16px;
+    }
+}
+

@@ -5,26 +5,38 @@ import TextInput from "../components/TextInput.jsx";
 import {dateStringFormatter, fetchAndFormat} from "../utils.js";
 import Select from "react-select";
 import ImageForm from "../components/ImageForm.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ImagePreview from "../components/ImagePreview.jsx";
 import RadioInput from "../components/RadioInput.jsx";
 import PriceInput from "../components/PriceInput.jsx";
 import validators from "../inputValidators.js";
 import apiParamsMap from "../apiParamsMap.js";
-
-
-const brandOptions = await fetchAndFormat('brands');
-const cpuOptions = await fetchAndFormat('cpus');
+import {findById} from "../utils.js";
 
 
 function LaptopForm() {
     const navigate = useNavigate();
 
+
+    // fetch data for select fields
+    const [brandOptions, setBrandOptions] = useState([]);
+    const [cpuOptions, setCpuOptions] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            setBrandOptions(await fetchAndFormat('brands'));
+            setCpuOptions(await fetchAndFormat('cpus'));
+        }
+
+        fetchData();
+    }, []);
+
+
+    // initialize form, load cached values from local storage
     const previousValues = JSON.parse(localStorage.getItem('laptopForm'));
     const { register, handleSubmit, watch, control, getValues, setValue, formState: {errors} } = useForm({
         defaultValues: previousValues
     });
-
     localStorage.setItem('laptopForm', JSON.stringify(watch()));
 
     const [imagePreviewData, setImagePreviewData] = useState();
@@ -102,7 +114,7 @@ function LaptopForm() {
                             <Select
                                 options={brandOptions}
                                 isSearchable={false}
-                                defaultValue={brandOptions.find(brand => brand.value === previousValues?.brand)}
+                                value={findById(brandOptions, getValues('brand'))}
                                 name="brand"
                                 placeholder="ლეპტოპის ბრენდი"
                                 className={"dropdown dropdown__half" + (errors?.brand ? ' invalid' : '')}
@@ -128,7 +140,7 @@ function LaptopForm() {
                                 <Select
                                     options={cpuOptions}
                                     isSearchable={false}
-                                    defaultValue={cpuOptions.find(cpu => cpu.label === previousValues?.cpu)}
+                                    value={cpuOptions.find(item => item.label === getValues('cpu'))}
                                     name="cpu"
                                     placeholder="CPU"
                                     className={"dropdown dropdown__third" + (errors?.cpu ? ' invalid' : '')}

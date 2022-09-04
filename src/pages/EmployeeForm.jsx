@@ -2,33 +2,46 @@ import BackButton from "../components/Back.jsx";
 import TextInput from "../components/TextInput.jsx";
 import {useForm, Controller} from "react-hook-form";
 import Select from "react-select";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {fetchAndFormat} from "../utils.js";
+import {fetchAndFormat, findById} from "../utils.js";
 import validators from "../inputValidators.js";
-
-
-
-const teamOptions = await fetchAndFormat('teams');
-
-const positionOptionsRequest = await fetch('https://pcfy.redberryinternship.ge/api/positions');
-let positionOptions = await positionOptionsRequest.json();
-positionOptions = positionOptions.data.reduce( (previousValue, currentValue) => {
-    if (!previousValue[currentValue.team_id]) previousValue[currentValue.team_id] = [];
-    previousValue[currentValue.team_id].push({value: currentValue.id, label: currentValue.name});
-    return previousValue;
-}, {});
 
 
 function EmployeeForm() {
     const navigate = useNavigate();
 
+
+    // fetch data for select fields
+    const [teamOptions, setTeamOptions] = useState([]);
+    const [positionOptions, setPositionOptions] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            setTeamOptions(await fetchAndFormat('teams'));
+
+            const positionOptionsRequest = await fetch('https://pcfy.redberryinternship.ge/api/positions');
+            let positionsData = await positionOptionsRequest.json();
+            positionsData = positionsData.data.reduce( (previousValue, currentValue) => {
+                if (!previousValue[currentValue.team_id]) previousValue[currentValue.team_id] = [];
+                previousValue[currentValue.team_id].push({value: currentValue.id, label: currentValue.name});
+                return previousValue;
+            }, {});
+
+            setPositionOptions(positionsData);
+        }
+
+        fetchData();
+    }, []);
+
+
+    // initialize form, load cached values from local storage
     const previousValues = JSON.parse(localStorage.getItem('employeeForm'));
     const { register, handleSubmit, watch, control, getValues, setValue, formState: {errors} } = useForm({
         defaultValues: previousValues
     });
-
     localStorage.setItem('employeeForm', JSON.stringify(watch()));
+
 
     const phoneNumberFormatter = string => string.replace(/(\d{3})/g,"$& ").replace(/\s\s+/g, ' ').replace(/ $/, '');
 
@@ -76,7 +89,7 @@ function EmployeeForm() {
                         <Select
                             options={teamOptions}
                             isSearchable={false}
-                            defaultValue={teamOptions.find(team => team.value === previousValues?.team)}
+                            value={findById(teamOptions, selectedTeam)}
                             name="team"
                             placeholder="თიმი"
                             className={"dropdown" + (errors?.team ? ' invalid' : '')}
@@ -102,8 +115,7 @@ function EmployeeForm() {
                             isDisabled={!Boolean(selectedTeam)}
                             options={selectedTeam ? positionOptions[selectedTeam] : []}
                             isSearchable={false}
-                            defaultValue={positionOptions[previousValues?.team]
-                                ?.find(position => position.value === previousValues?.position)}
+                            value={findById(positionOptions[selectedTeam] ? positionOptions[selectedTeam] : [], getValues('position'))}
                             name="position"
                             placeholder="პოზიცია"
                             className={"dropdown" + (errors?.position ? ' invalid' : '')}

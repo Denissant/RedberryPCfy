@@ -2,7 +2,6 @@ import {bytesToSizeString, truncate} from "../utils.js";
 
 
 function ImageForm(props) {
-    if (props.errors?.image) window.scrollTo(0,0)
 
     const applyImagePreview = (event, file=null) => {
         if (!file) file = event.target.files[0];

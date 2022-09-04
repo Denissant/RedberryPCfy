@@ -1,12 +1,24 @@
 import BackButton from "../components/Back.jsx";
 import {Link} from "react-router-dom";
-
-const request = await fetch(`https://pcfy.redberryinternship.ge/api/laptops?token=${import.meta.env.VITE_REDBERRY_API_KEY}`);
-const response = await request.json();
-const laptops = response.data;
+import {useEffect, useState} from "react";
 
 
 function LaptopListPage() {
+
+    // fetch data for select fields
+    const [laptops, setLaptops] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const request = await fetch(`https://pcfy.redberryinternship.ge/api/laptops?token=${import.meta.env.VITE_REDBERRY_API_KEY}`);
+            const response = await request.json();
+            setLaptops(response.data);
+        }
+
+        fetchData();
+    });
+
+
     const laptopElements = laptops.map( laptopData => {
         return (
             <div key={laptopData.laptop.id} className="laptop">

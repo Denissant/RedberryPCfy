@@ -35,3 +35,7 @@ export function dateStringFormatter(string) {
 
     return finalString.replace(/ \/ $/, '');
 }
+
+export function findById(array, id) {
+    return array.find(item => item.value === id);
+}

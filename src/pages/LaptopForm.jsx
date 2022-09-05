@@ -71,6 +71,8 @@ function LaptopForm() {
 
                 const message = await response.json();
                 if (response.ok) {
+                    localStorage.removeItem('employeeForm');
+                    localStorage.removeItem('laptopForm');
                     navigate('/success');
                 } else {
                     alert('Error')

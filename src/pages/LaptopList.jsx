@@ -24,7 +24,7 @@ function LaptopListPage() {
             <div key={laptopData.laptop.id} className="laptop">
                 <img src={`https://pcfy.redberryinternship.ge/${laptopData.laptop.image}`} alt="laptop-image" />
                 <div className="info__wrapper">
-                    <span className="owner__name">{laptopData.user.name}</span>
+                    <span className="owner__name">{laptopData.user.name} {laptopData.user.surname}</span>
                     <span className="laptop__name">{laptopData.laptop.name}</span>
                     <Link to={"/details/" + laptopData.laptop.id}>მეტის ნახვა</Link>
                 </div>

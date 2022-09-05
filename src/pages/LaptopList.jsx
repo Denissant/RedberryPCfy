@@ -16,7 +16,7 @@ function LaptopListPage() {
         }
 
         fetchData();
-    });
+    }, []);
 
 
     const laptopElements = laptops.map( laptopData => {

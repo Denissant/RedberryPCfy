@@ -33,13 +33,15 @@ function LaptopListPage() {
     });
 
     return (
-        <main>
-            <BackButton />
-            <h2 className="page__title">ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ</h2>
-            <div className="laptops">
-                {laptopElements}
-            </div>
-        </main>
+        <div>
+            <main>
+                <BackButton />
+                <h2 className="page__title">ᲩᲐᲜᲐᲬᲔᲠᲔᲑᲘᲡ ᲡᲘᲐ</h2>
+                <div className="laptops">
+                    {laptopElements}
+                </div>
+            </main>
+        </div>
     );
 }
 

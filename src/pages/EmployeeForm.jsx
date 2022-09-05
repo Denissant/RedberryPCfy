@@ -32,6 +32,8 @@ function EmployeeForm() {
         }
 
         fetchData();
+
+        document.body.style.backgroundColor = '#F6F6F6';
     }, []);
 
 

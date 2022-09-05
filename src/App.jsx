@@ -5,6 +5,7 @@ import EmployeeForm from "./pages/EmployeeForm.jsx";
 import LaptopForm from "./pages/LaptopForm.jsx";
 import SuccessPage from "./pages/Success";
 import LaptopListPage from "./pages/LaptopList";
+import LaptopDetails from "./pages/LaptopDetails";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Route path="/new/laptop" element={<LaptopForm />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/list" element={<LaptopListPage />} />
+            <Route path="/details/:id" element={<LaptopDetails />} />
         </Routes>
     );
 }

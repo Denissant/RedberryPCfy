@@ -1,0 +1,131 @@
+.laptop__details {
+    padding: 0 16px;
+}
+
+.laptop__image {
+    margin: 26px 0 6px;
+    height: 191px;
+    width: 358px;
+}
+
+.two__columns {
+    display: flex;
+    margin-top: 28px;
+}
+
+.labels, .values {
+    width: 50%;
+}
+
+.labels, .values {
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.labels {
+    font-family: 'Helvetica Neue Medium', sans-serif;
+    font-weight: 500;
+    color: #2E2E2E;
+}
+
+.values {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    color: #797979;
+}
+
+.horizontal__break {
+    visibility: visible;
+    margin-top: 41px;
+}
+
+.two__columns:last-of-type {
+    margin-bottom: 46px;
+}
+
+
+@media only screen and (min-width: 980px) {
+
+    .laptop__details {
+        padding: 0 371px;
+    }
+
+    .laptop__image {
+        margin-top: 42px;
+        margin-right: 68px;
+        width: 577px;
+        height: 342px;
+    }
+
+    .two__columns:first-of-type {
+        display: inline-flex;
+        position: absolute;
+        height: 240px;
+        top: 195px;
+    }
+
+    .two__columns:first-of-type div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 0;
+    }
+
+    .two__columns:first-of-type .labels {
+        margin-right: 80px;
+        margin-bottom: 0;
+    }
+
+    .two__columns:first-of-type .values {
+        width: 100%;
+    }
+
+    .labels, .values {
+        font-size: 22px;
+        line-height: 27px;
+    }
+
+    .horizontal__break {
+        margin-top: 84px;
+        margin-bottom: 59px;
+    }
+
+    .labels div, .values div {
+        margin-bottom: 31px;
+    }
+
+    .two__columns:last-of-type {
+        margin-bottom: 50px;
+    }
+
+    .labels__second__column, .values__first__column, .values__second__column {
+        position: relative;
+    }
+
+    .labels__second__column {
+        bottom: 227px;
+        left: 644px;
+    }
+
+    .values__first__column {
+        right: 250px;
+    }
+
+    .values__second__column {
+        left: 288px;
+        bottom: 226px;
+    }
+
+    .labels__second__column.last {
+        bottom: 114px;
+    }
+
+    .values__second__column.last {
+        bottom: 114px;
+    }
+
+    .horizontal__break:last-of-type {
+        margin-top: -100px;
+    }
+
+}

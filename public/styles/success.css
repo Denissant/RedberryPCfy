@@ -1,20 +1,24 @@
-.success__wrapper {
+.success__modal {
     background-color: #FFFFFF;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    justify-content: space-evenly;
 }
 
-.confetti {
-    position: absolute;
-    top: 186px;
-    left: 90px;
+.success__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.success__wrapper h2 {
-    margin-top: 415px;
+.success__confetti {
+    padding-left: 44px;
+}
+
+.success_text {
     width: 164px;
     font-family: "Helvetica Neue Bold", sans-serif;
     font-weight: 700;
@@ -23,10 +27,10 @@
     text-align: center;
 }
 
-.success__wrapper .link__button {
-    margin-top: 159px;
-    width: 166px;
-    height: 24px;
+.success__nextbtn {
+    width: 90vw;
+    max-width: 297px;
+    min-height: 60px;
     padding: 18px 65.5px;
     border-radius: 8px;
     text-align: center;
@@ -39,7 +43,7 @@
     line-height: 24px;
 }
 
-.success__wrapper .link__text {
+.success__homebtn {
     margin-top: 28px;
     color: #0089A7;
     font-family: 'Helvetica Neue Medium', sans-serif;
@@ -50,9 +54,26 @@
 }
 
 
-@media only screen and (min-width: 980px) {
+@media (min-width: 450px) {
+    .success__homebtn,
+    .success__nextbtn {
+        font-size: 28px;
+    }
 
-    .success__body {
+    .success_text {
+        font-size: 28px;
+        width: 290px;
+    }
+
+    .success__confetti {
+        width: 150%;
+    }
+}
+
+
+@media (min-width: 980px) {
+
+    .success {
         background-color: #4A4A4A;
         display: flex;
         align-items: center;
@@ -60,28 +81,30 @@
         height: 100vh;
     }
 
-    .success__wrapper {
-        width: 847px;
-        height: 537px;
+    .success__modal {
+        width: 70vw;
+        max-width: 847px;
+        height: 80vh;
+        max-height: 537px;
+        justify-content: space-around;
     }
 
-    .confetti {
-        top: 305px;
-        left: 855px;
+    .success__confetti {
+        width: 90%;
     }
 
-    .success__wrapper h2 {
+    .success__homebtn,
+    .success__nextbtn {
+        font-size: 20px;
+    }
+
+    .success_text {
         width: unset;
-        margin-top: 271px;
         font-size: 25px;
         line-height: 31px;
     }
 
-    .success__wrapper .link__button {
-        margin-top: 79px;
-    }
-
-    .success__wrapper .link__text {
+    .success__homebtn {
         font-family: 'Helvetica Neue Medium', sans-serif;
     }
 

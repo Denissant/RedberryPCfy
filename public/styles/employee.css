@@ -1,5 +1,18 @@
-.relative {
-    position: relative;
+.employee {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.employee__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 11px;
+    border-radius: 12px 12px 0 0;
+    min-height: 100vh;
+    max-width: 358px;
 }
 
 .back {
@@ -10,18 +23,18 @@
     position: absolute;
     top: 4%;
     left: 4.1%;
-    background: url("../assets/back_mobile.png") no-repeat center;
+    background: url("/public/assets/back_mobile.png") no-repeat center;
     background-size: contain;
 }
 
-.form__title__wrapper {
+.formnav {
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-top: 31px;
 }
 
-.form__title {
+.formnav__title {
     color: #232323;
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 16px;
@@ -31,7 +44,7 @@
     margin-bottom: 5px;
 }
 
-.form__number {
+.formnav__page {
     color: #898989;
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 14px;
@@ -40,37 +53,40 @@
     text-align: center;
 }
 
-
-.form__title.next {
+.formnav__title--next {
     display: none;
 }
 
-form {
-    display: inline-block;
-    background-color: #FFFFFF;
-    margin-top: 11px;
-    padding: 14px 0 0 16px;
-    border-radius: 12px 12px 0 0;
+.employee__nameinputs {
+    width: 100%;
 }
 
-.input__wrapper {
-    margin-top: 24px;
+.employee__nameinputs .inputblock {
+    margin-right: 0;
+    margin-left: 0;
 }
 
-label, .label {
+.inputblock {
+    margin: 24px 16px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputblock__label {
     font-family: 'Helvetica Neue Medium', sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 21px;
 }
 
-input {
+.inputblock__text {
     margin: 8px 0;
     padding: 0 16px;
     border: 1.8px solid #8AC0E2;
     border-radius: 8px;
-    width: 326px;
-    height: 60px;
+    width: 100%;
+    height: 64px;
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -78,25 +94,7 @@ input {
     color: #000000;
 }
 
-input:focus {
-    outline: none;
-    border-color: #6499FF;
-    background-color: rgba(43, 75, 242, 0.06);
-}
-
-input::placeholder {
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.invalid input {
-    border-color: #E52F2F;
-}
-
-.invalid label, .invalid .hint, .invalid .label {
-    color: #E52F2F;
-}
-
-.hint {
+.inputblock__hint {
     font-family: 'Helvetica Neue Light', sans-serif;
     font-weight: 300;
     font-size: 14px;
@@ -104,9 +102,27 @@ input::placeholder {
     color: #2E2E2E;
 }
 
-.submit {
-    margin: 43px 16px 58px 0;
-    float: right;
+.inputblock__text:focus {
+    outline: none;
+    border-color: #6499FF;
+    background-color: rgba(43, 75, 242, 0.06);
+}
+
+.inputblock__text::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.inputblock__text--invalid {
+    border-color: #E52F2F;
+}
+
+.inputblock__label--invalid,
+.inputblock__hint--invalid {
+    color: #E52F2F;
+}
+
+.employee__submit {
+    margin: 43px 0 58px;
     outline: none;
     border: none;
     width: 132px;
@@ -119,18 +135,19 @@ input::placeholder {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
+    align-self: flex-end;
 }
 
 .dropdown {
-    margin-top: 46px;
-    width: 358px;
+    margin: 46px 16px 0;
+    width: 100%;
     height: 60px;
     background-color: #EBEBEB;
     border-radius: 8px;
 }
 
-.dropdown.invalid .dropdown__control  {
-    border: 1.8px solid #E52F2F;
+.dropdown--invalid .dropdown__control  {
+    outline: 1.8px solid #E52F2F!important;
 }
 
 .dropdown__value-container, .dropdown__indicator {
@@ -166,7 +183,7 @@ input::placeholder {
     position: relative;
     width: 16px;
     height: 16px;
-    background: url('../assets/dropdown_arrow.svg') no-repeat center;
+    background: url('/public/assets/dropdown_arrow.svg') no-repeat center;
     background-size: contain;
 }
 
@@ -199,78 +216,100 @@ input::placeholder {
     color: #000000;
 }
 
-.redberry__logo__circle {
+.redberry__logo {
     display: none;
 }
 
+@media (min-width: 450px) {
+    .employee__form {
+        min-width: 420px;
+    }
 
-@media only screen and (min-width: 980px) {
+    .back {
+        background-image: url("/public/assets/back.svg");
+        width: 35px;
+        height: 35px;
+    }
+}
+
+
+@media (min-width: 980px) {
+
+    .employee {
+        background-color: rgb(246, 246, 246);
+    }
+
+    .employee__form {
+        margin: 42px auto 65px;
+        padding: 4vh 174px 44px;
+        width: 80vw;
+        max-width: 1226px;
+        border-radius: 18px;
+        min-height: unset;
+        background-color: white;
+    }
 
     .back {
         top: 53px;
         left: 70px;
         width: 53px;
         height: 53px;
-        background-image: url("../assets/back.svg");
         cursor: pointer;
     }
 
-    .form__title__wrapper {
+    .formnav {
         flex-direction: row;
         margin-top: 91px;
     }
 
-    .form__number {
+    .formnav__page {
         display: none;
     }
 
-    .form__title.next {
+    .formnav__title--current::after {
+        content: '';
+        display: block;
+        background-color: black;
+        position: relative;
+        width: 145px;
+        height: 2px;
+        left: 13px;
+        top: 10px;
+    }
+
+    .formnav__title--next {
         display: inline;
         cursor: pointer;
     }
 
-    .form__title.laptop {
+    .formnav__title--laptop {
         margin-left: 66px;
     }
 
-    .employee__underline {
-        position: absolute;
-        top: 122px;
-        left: 738px;
-        width: 145px;
-        height: 2px;
-        background-color: #000000;
-    }
-
-    form {
-        margin: 42px 0 197px 347px;
-        padding: 48px 174px 44px;
-        width: 878px;
-        border-radius: 18px;
-    }
-
-    .input__wrapper {
+    .inputblock {
         margin-top: 48px;
         width: 100%;
     }
 
-    .name__inputs__wrapper {
+    .employee__nameinputs {
         display: flex;
         flex-direction: row;
+    }
+
+    .employee__nameinputs .inputblock {
+        width: 46.5%;
+    }
+
+    .employee__nameinputs .inputblock:first-of-type {
+        margin-right: 7%;
+    }
+
+    .inputblock__text {
+        display: block;
         width: 100%;
     }
 
-    .name__inputs__wrapper input {
-        width: 371.5px;
-        margin-right: 66.5px;
-    }
-
-    input {
-        display: block;
-        width: 846px;
-    }
-
-    .submit {
+    .employee__submit {
         margin: 43px 0 0 0;
         font-weight: 400;
         width: 176px;
@@ -281,25 +320,28 @@ input::placeholder {
 
     .dropdown {
         margin-top: 53px;
-        width: 882px;
+        width: 100%;
     }
 
-    #phone + .hint {
+    #phone + .inputblock__hint {
         visibility: hidden;
     }
 
-    #phone + .hint:before {
+    #phone + .inputblock__hint:before {
         visibility: visible;
         content: 'უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს'
     }
 
-    .redberry__logo__circle {
+    .redberry__logo--wrapper {
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .redberry__logo {
         display: block;
         height: 85px;
         width: 85px;
-        position: absolute;
-        bottom: 45px;
-        left: 917px;
     }
 
 }

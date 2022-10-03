@@ -25,12 +25,19 @@ function ImageForm(props) {
         return (
             <div
                 onDrop={drop}
-                className={"file__dropzone" + (props.errors?.image ? ' invalid' : '')}
+                className={"image__dropzone" + (props.errors?.image ? ' image__dropzone--invalid' : '')}
                 onDragOver={(e) => e.preventDefault()}
             >
-                <div className="image__warning" />
-                <span className="dropzone__hint">ჩააგდე ან ატვირთე ლეპტოპის ფოტო</span>
-                <label className="image__upload__button" htmlFor="image">ატვირთე</label>
+                <div className={"image__warning" + (props.errors?.image ? ' image__warning--visible' : '')} />
+                <span className={"image__hint" + (props.errors?.image ? ' image__hint--invalid' : '')}>
+                    ჩააგდე ან ატვირთე ლეპტოპის ფოტო
+                </span>
+                <label
+                    className={"image__submit" + (props.errors?.image ? ' image__submit--invalid' : '')}
+                    htmlFor="image"
+                >
+                    ატვირთე
+                </label>
                 <input
                     {...props.register('image', {validate: () => props.getValues('image') instanceof File})}
                     id="image"
@@ -43,7 +50,7 @@ function ImageForm(props) {
     } else {
         return (  // display only upload button
             <>
-                <label className="image__reupload__button" htmlFor="image">თავიდან ატვირთე</label>
+                <label className="image__resubmit" htmlFor="image">თავიდან ატვირთე</label>
                 <input
                     className=""
                     {...props.register('image', {validate: () => props.getValues('image') instanceof File})}

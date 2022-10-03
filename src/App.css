@@ -1,18 +1,13 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.horizontal__center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body {
+    min-height: 100vh;
 }
 
-.button__large:hover, .submit:hover, .file__upload__button:hover {
-    background-color: #317AD0;
-}
-
-.button__large:focus, .submit:focus, .file__upload__button:focus {
-    background-color: #1A5DAB;
+ul {
+    list-style: none;
 }

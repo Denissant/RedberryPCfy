@@ -7,7 +7,6 @@ import {useNavigate} from "react-router-dom";
 import {fetchAndFormat, findById} from "../utils.js";
 import validators from "../inputValidators.js";
 
-
 function EmployeeForm() {
     const navigate = useNavigate();
 
@@ -52,17 +51,21 @@ function EmployeeForm() {
     const onSubmit = () => navigate('/new/laptop');
 
     return (
-        <main>
+        <main className="employee">
             <BackButton />
-            <nav className="form__title__wrapper">
-                <span className="form__title current">თანამშრომლის ინფო</span>
-                <span className="employee__underline" />
-                <span className="form__number">1/2</span>
-                <span onClick={handleSubmit(onSubmit)} className="form__title laptop next">ლეპტოპის მახასიათებლები</span>
+            <nav className="formnav">
+                <span className="formnav__title formnav__title--current">თანამშრომლის ინფო</span>
+                <span className="formnav__page">1/2</span>
+                <span
+                    onClick={handleSubmit(onSubmit)}
+                    className="formnav__title formnav__title--laptop formnav__title--next"
+                >
+                    ლეპტოპის მახასიათებლები
+                </span>
             </nav>
 
-            <form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-                <div className="name__inputs__wrapper">
+            <form className="employee__form" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+                <div className="employee__nameinputs">
                     <TextInput
                         name="name"
                         label="სახელი"
@@ -94,7 +97,7 @@ function EmployeeForm() {
                             value={findById(teamOptions, selectedTeam)}
                             name="team"
                             placeholder="თიმი"
-                            className={"dropdown" + (errors?.team ? ' invalid' : '')}
+                            className={"dropdown" + (errors?.team ? ' dropdown--invalid' : '')}
                             classNamePrefix='dropdown'
                             inputRef={ref}
                             onChange={val => {
@@ -120,7 +123,7 @@ function EmployeeForm() {
                             value={findById(positionOptions[selectedTeam] ? positionOptions[selectedTeam] : [], getValues('position'))}
                             name="position"
                             placeholder="პოზიცია"
-                            className={"dropdown" + (errors?.position ? ' invalid' : '')}
+                            className={"dropdown" + (errors?.position ? ' dropdown--invalid' : '')}
                             classNamePrefix='dropdown'
                             inputRef={ref}
                             onChange={val => onChange(val.value)}
@@ -149,13 +152,13 @@ function EmployeeForm() {
                     register={register}
                 />
 
-                <input type="submit" value="შემდეგი" className="submit" />
+                <input type="submit" value="შემდეგი" className="employee__submit" />
 
             </form>
 
-            <div className="relative">
-                <img src="/assets/redberry_circle_logo.png" className="redberry__logo__circle" alt="redberry-logo" />
-            </div>
+            <picture className="redberry__logo--wrapper">
+                <img src="/assets/redberry_circle_logo.png" className="redberry__logo" alt="Redberry Logo" />
+            </picture>
 
         </main>
     )

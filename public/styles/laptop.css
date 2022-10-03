@@ -1,9 +1,44 @@
-hr {
+.laptop {
+    display: flex;
+    flex-direction: column;
+}
+
+.laptop__form {
+    margin-top: 11px;
+    min-height: 100vh;
+}
+
+.laptop__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 29px 16px 33px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.laptop__row {
+    width: 100%;
+}
+
+.laptop__submit--wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.laptop__row .inputblock,
+.laptop__row .dropdown {
+    margin: 24px 0 0 0;
+}
+
+.laptop__horizontalbreak {
     margin-top: 10px;
     visibility: hidden;
 }
 
-input[type='radio'] {
+.inputblock__radio {
     position: relative;
     top: 3px;
     padding: 0;
@@ -16,7 +51,7 @@ input[type='radio'] {
     outline:none;
 }
 
-input[type='radio']:before {
+.inputblock__radio:before {
     content:'';
     display:block;
     width:60%;
@@ -24,29 +59,22 @@ input[type='radio']:before {
     margin: 20% auto;
     border-radius:50%;
 }
-input[type='radio']:checked:before {
+
+.inputblock__radio:checked:before {
     background-color: #4D9AC3;;
 }
 
-form.laptop {
+.laptop__form {
     background-color: #F6F6F6;
-    /*margin-top: 11px;*/
     padding: 0;
     border-radius: 0;
 }
 
-.form__section {
-    /*margin-top: 11px;*/
-    padding: 29px 0 33px 16px;
-    background-color: #FFFFFF;
-    border-radius: 12px;
-}
-
-.file__dropzone {
+.image__dropzone {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 358px;
+    width: 100%;
     height: 244px;
     background-color: #F6F6F6;
     border-radius: 8px;
@@ -58,20 +86,20 @@ form.laptop {
     background-repeat: no-repeat;
 }
 
-.file__dropzone.invalid {
+.image__dropzone--invalid {
     background-color: #FFEDED;
     background-image: repeating-linear-gradient(0deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px), repeating-linear-gradient(90deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px), repeating-linear-gradient(180deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px), repeating-linear-gradient(270deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px);
 }
 
-label.image__upload__button {
+.image__submit {
     visibility: hidden;
 }
 
-.dropzone__hint {
+.image__hint {
     visibility: hidden;
 }
 
-label.image__upload__button:after {
+.image__submit:after {
     display: block;
     visibility: visible;
     content: 'ლეპტოპის ფოტოს ატვირთვა';
@@ -85,7 +113,7 @@ label.image__upload__button:after {
     text-align: center;
 }
 
-.invalid label.image__upload__button:after {
+.image__submit--invalid:after {
     color: #E52F2F;
     margin-top: 30px;
 }
@@ -104,7 +132,7 @@ label.image__upload__button:after {
     top: 196px;
 }
 
-.dropzone__hint:after {
+.image__hint:after {
     visibility: visible;
     content: '';
     background-image: url("../assets/photo_icon.svg");
@@ -116,7 +144,7 @@ label.image__upload__button:after {
     top: 42px;
 }
 
-.invalid .dropzone__hint:after {
+.image__hint--invalid:after {
     top: 22px;
 }
 
@@ -124,24 +152,24 @@ label.image__upload__button:after {
     display: none;
 }
 
-.image__preview {
+.imagepreview {
     width: 358px;
     height: 181px;
     border-radius: 8px;
 }
 
-.image__preview__info {
+.preview {
     margin: 25px 0 47px;
-    display: flex; /**/
-    flex-direction: row; /**/
-    align-items: center; /**/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.image__preview__info img {
+.preview__image {
     padding: 2px;
 }
 
-.image__label, .image__size {
+.preview__label, .preview__size {
     font-family: 'Helvetica Neue Medium', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -151,20 +179,20 @@ label.image__upload__button:after {
     left: 53px;
 }
 
-.image__label {
+.preview__label {
     top: 305px;
     color: #202020;
 }
 
-.image__size {
+.preview__size {
     top: 321px;
     color: #5F5F5F;
 }
 
-label.image__reupload__button {
+.image__resubmit {
+    justify-self: right;
     right: 14px;
     top: 298px;
-    position: absolute;
     color: #FFFFFF;
     background-color: #62A1EB;
     font-family: 'Helvetica Neue Medium', sans-serif;
@@ -178,12 +206,7 @@ label.image__reupload__button {
     border-radius: 8px;
 }
 
-.dropdown__third {
-    margin-top: 0;
-    margin-bottom: 42px;
-}
-
-.radio__wrapper label {
+.radio__label {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -195,7 +218,7 @@ label.image__reupload__button {
     display: none;
 }
 
-.invalid .radio__warning {
+.radio__warning--visible {
     margin-left: 16px;
     margin-bottom: -3px;
     display: inline-block;
@@ -205,92 +228,106 @@ label.image__reupload__button {
     background-size: contain;
 }
 
-.price__icon {
+.inputblock--price {
+    position: relative;
+}
+
+.inputblock--price:after {
+    content: '';
+    position: absolute;
+    display: block;
+    background: url("../assets/lari_symbol.svg") no-repeat center;
     width: 13px;
     height: 15.17px;
-    position: relative;
     top: -69px;
     right: -331px;
 }
 
-.form__section:last-of-type {
+.laptop__section:last-of-type {
     height: 533px;
     border-radius: 12px 12px 0 0;
 }
 
-.back__to__employee {
+.laptop__back {
     color: #62A1EB;
     text-decoration: none;
-    float: left;
     margin-top: 85px;
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 18px;
     line-height: 21px;
 }
 
-.submit.laptop {
+.laptop__submit {
+    outline: none;
+    border: none;
+    height: 46px;
+    background: #62A1EB;
+    border-radius: 8px;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Helvetica Neue Medium', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    align-self: flex-end;
     width: 162px;
-    margin: 70px 16px 48px 0;
+    margin: 70px 0 48px;
 }
 
 
-@media only screen and (min-width: 980px) {
+@media (min-width: 980px) {
 
-    hr {
+    .formnav__title--laptop.formnav__title--current:after {
+        width: 190px;
+    }
+
+    .laptop__form {
+        width: 80vw;
+        max-width: 1226px;
+        margin: 42px auto 65px;
+        background-color: white;
+        padding: 6vh 9vw 7vh;
+        border-radius: 18px;
+    }
+
+    .laptop__row {
+        grid-column: 1 / 3;
+        display: flex;
+        align-items: center;
+        gap: 8%;
+        margin-top: 46px;
+    }
+
+    .laptop__row--three {
+        gap: 3%;
+    }
+
+    .laptop__horizontalbreak {
         visibility: visible;
         margin-top: 51px;
     }
 
-    input[type='radio'] {
-        margin-top: 28px;
+    .laptop__row .inputblock,
+    .laptop__row .dropdown {
+        margin: 0;
     }
 
-    form.laptop {
-        background-color: #FFFFFF;
-        /*margin-top: 11px;*/
-        padding: 48px 174px 44px;
-        border-radius: 18px;
-    }
-
-    .form__section {
-        /*margin-top: 11px;*/
+    .laptop__section {
+        display: grid;
+        grid-template-columns: 50% 50%;
         padding: 0;
         background-color: unset;
         border-radius: 0;
     }
 
-    .input__wrapper.half {
-        display: inline-block;
-        width: 50%;
-        margin-right: 30px;
-    }
-
-    .half input:not(input[type="radio"]) {
-        width: 371.5px;
-    }
-
-    .dropdown.dropdown__half {
-        float: right;
-        width: 406.5px;
-        margin-top: 78px;
-    }
-
-    .laptop__underline {
-        position: absolute;
-        top: 122px;
-        left: 971px;
-        width: 200px;
-        height: 2px;
-        background-color: #000000;
-    }
-
-    .file__dropzone {
+    .image__dropzone {
+        grid-column: 1 / 3;
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 20px 0 2px;
-        height: 423px;
-        width: 878px;
+        height: 39vh;
+        width: 100%;
         border-radius: 18px;
         background-color: #F7F7F7;
 
@@ -298,17 +335,16 @@ label.image__reupload__button {
         background-size: 2px 100%, 100% 2px, 2px 100% , 100% 2px;
         background-position: 0 0, 0 0, 100% 0, 0 100%;
         background-repeat: no-repeat;
-
     }
 
-    .file__dropzone.invalid {
+    .image__dropzone--invalid {
         background-color: #FFF1F1;
         background-image: repeating-linear-gradient(0deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px), repeating-linear-gradient(90deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px), repeating-linear-gradient(180deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px), repeating-linear-gradient(270deg, #e52f2f, #e52f2f 12px, transparent 12px, transparent 23px, #e52f2f 23px);
     }
 
-    .dropzone__hint {
+    .image__hint {
         visibility: visible;
-        margin-top: 107px;
+        margin-top: 10vh;
         text-align: center;
         width: 195px;
         height: 76px;
@@ -320,11 +356,11 @@ label.image__reupload__button {
         background-image: unset;
     }
 
-    .dropzone__hint:after {
+    .image__hint:after {
         display: none;
     }
 
-    .invalid .dropzone__hint {
+    .image__hint--invalid {
         margin-top: 19px;
         color: #E52F2F;
     }
@@ -333,7 +369,7 @@ label.image__reupload__button {
         display: none;
     }
 
-    .invalid .image__warning {
+    .image__warning--visible {
         margin-top: 54px;
         display: unset;
         width: 38px;
@@ -341,19 +377,19 @@ label.image__reupload__button {
         position: unset;
     }
 
-    label.image__upload__button:after {
+    .image__submit:after {
         visibility: hidden;
     }
 
-    label.image__upload__button {
+    .image__submit {
         visibility: visible;
-        margin-top: 65px;
+        margin-top: 6vh;
         font-family: 'Helvetica Neue', sans-serif;
         font-weight: 500;
         font-size: 20px;
         line-height: 24px;
-        width: 91px;
-        height: 24px;
+        width: 233px;
+        height: 60px;
         color: #FFFFFF;
         background-color: #62A1EB;
         text-align: center;
@@ -361,112 +397,102 @@ label.image__reupload__button {
         padding: 18px 71px;
     }
 
-    .image__preview {
-        width: 878px;
+    .imagepreview {
+        grid-column: 1 / 3;
+        width: 100%;
         height: 423px;
         border-radius: 18px;
     }
 
-    .image__preview__info {
+    .preview {
+        grid-column: 1 / 2;
         margin: 40px 0 52px;
         display: flex;
         flex-direction: row;
         align-items: center;
     }
 
-    .image__preview__info img {
+    .preview__image {
         margin-right: 25px;
     }
 
-    .image__label, .image__size {
+    .preview__label, .preview__size {
         font-size: 18px;
         line-height: 21px;
         position: unset;
     }
 
-    .image__label {
+    .preview__label {
         margin-right: 20px;
     }
 
-    label.image__reupload__button {
+    .image__resubmit {
+        grid-column: 2 / 3;
         left: 1164px;
         top: 656px;
         font-size: 20px;
         line-height: 24px;
-        width: 184px;
-        height: 24px;
+        width: 233px;
+        height: 60px;
         padding: 18px 24.5px;
     }
 
-    .three__inputs__wrapper {
-        display: flex;
-    }
-
-    .dropdown__third {
-        margin: 79px 24px 0 0;
-        width: 850px;
-    }
-
-    .input__wrapper.third {
-        display: block;
-        margin-right: 25px;
-    }
-
-    .input__wrapper.third:last-of-type {
-        margin-right: 0;
-    }
-
-    .third input {
-        width: 244px;
-    }
-
-    .radio__half {
-        margin-left: 29px;
-    }
-
-    .radio__wrapper input[type="radio"] {
+    .inputblock__radio {
         position: relative;
+        margin-top: 28px;
         top: 20px;
         left: -37px;
     }
 
-    .radio__wrapper label {
+    .laptop__row .inputblock--radio {
+        margin-bottom: 29px;
+    }
+
+    .radio__label {
+        display: flex;
+        flex-direction: column;
         position: relative;
         top: -15px;
         left: 40px;
         margin-right: 62px;
     }
 
-    .radio__wrapper label:last-of-type {
+    .radio__label:last-of-type {
         position: relative;
         top: -15px;
         left: 71px;
     }
 
-    .radio__wrapper {
+    .inputblock__radiowrapper {
         display: flex;
     }
 
-    .price__icon {
-        width: 18px;
-        height: 21px;
-        top: 98px;
-        right: 105px;
+    .inputblock--price:after {
+        width: 19px;
+        height: 19px;
+        top: 52px;
+        right: 23px;
     }
 
-    .back__to__employee {
+    .laptop__submit--wrapper {
+        grid-column: 1 / 3;
+    }
+
+    .laptop__back {
         color: #62A1EB;
         text-decoration: none;
-        float: left;
         margin-top: 93px;
         font-family: 'Helvetica Neue', sans-serif;
         font-size: 18px;
         line-height: 21px;
     }
 
-    .submit.laptop {
+    .laptop__submit {
+        font-weight: 400;
         width: 176px;
-        margin: 76px 0 0 0;
+        height: 60px;
+        font-size: 20px;
+        line-height: 24px;
+        margin: 76px 0 0;
     }
-
 }

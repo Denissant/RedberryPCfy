@@ -23,7 +23,6 @@ function LaptopDetailsPage() {
     const [laptopDetails, setLaptopDetails] = useState();
     const [teams, setTeams] = useState([]);
     const [brands, setBrands] = useState([]);
-    const [cpus, setCpus] = useState([]);
     const [positions, setPositions] = useState([]);
 
 
@@ -37,7 +36,6 @@ function LaptopDetailsPage() {
 
             setTeams(await fetchAndFormat('teams'));
             setBrands(await fetchAndFormat('brands'));
-            setCpus(await fetchAndFormat('cpus'));
             setPositions(await fetchAndFormat('positions'));
         }
 
@@ -48,78 +46,86 @@ function LaptopDetailsPage() {
     const employee = laptopDetails?.user;
 
     return (
-        <main className="laptop__details">
+        <main className="laptopdetails">
             <BackButton />
             <h2 className="page__title">ᲚᲔᲞᲢᲝᲞᲘᲡ ᲘᲜᲤᲝ</h2>
-            <img
-                className="laptop__image"
-                src={laptop?.image ? `https://pcfy.redberryinternship.ge/${laptop?.image}` : '/assets/default_laptop.png'}
-                alt="laptop-image"
-            />
-            <div className="two__columns">
-                <div className="labels">
-                    <div>სახელი:</div>
-                    <div>თიმი:</div>
-                    <div>პოზიცია:</div>
-                    <div>მეილი:</div>
-                    <div>ტელ.ნომერი:</div>
-                </div>
-                <div className="values">
-                    <div>{laptopDetails ? `${employee?.name} ${employee?.surname}` : 'იტვირთება...'}</div>
-                    <div>{findLabelById(teams, employee?.team_id) || 'იტვირთება...'}</div>
-                    <div>{findLabelById(positions, employee?.position_id) || 'იტვირთება...'}</div>
-                    <div>{employee?.email || 'იტვირთება...'}</div>
-                    <div>{phoneNumberFormatter(employee?.phone_number || 'იტვირთება...')}</div>
-                </div>
-            </div>
 
-            <hr className="horizontal__break" />
-
-            <div className="two__columns">
-                <div className="labels">
-                    <div>ლეპტოპის სახელი:</div>
-                    <div>ლეპტოპის ბრენდი:</div>
-                    <div>RAM:</div>
-                    <div>მეხსიერების ტიპი:</div>
-                    <div className="labels__second__column">
-                        <div>CPU:</div>
-                        <div>CPU-ს ბირთვი:</div>
-                        <div>CPU-ს ნაკადი:</div>
-                    </div>
+            <div className="laptopgrid">
+                <div className="laptopgrid__imagewrapper">
+                    <img
+                        className="laptopgrid__image"
+                        src={laptop?.image ? `https://pcfy.redberryinternship.ge/${laptop?.image}` : '/assets/default_laptop.png'}
+                        alt="laptop-image"
+                    />
                 </div>
-                <div className="values">
-                    <div className="values__first__column">
-                        <div>{laptop?.name || 'იტვირთება...'}</div>
-                        <div>{findLabelById(brands, laptop?.brand_id) || 'იტვირთება...'}</div>
-                        <div>{laptop?.ram || 'იტვირთება...'}</div>
-                        <div>{laptop?.hard_drive_type || 'იტვირთება...'}</div>
-                    </div>
-                    <div className="values__second__column">
-                        <div>{laptop?.cpu.name || 'იტვირთება...'}</div>
-                        <div>{laptop?.cpu.cores || 'იტვირთება...'}</div>
-                        <div>{laptop?.cpu.threads || 'იტვირთება...'}</div>
-                    </div>
-                </div>
-            </div>
 
-            <hr className="horizontal__break" />
-
-            <div className="two__columns">
-                <div className="labels">
-                    <div>მდგომარეობა:</div>
-                    <div>ლეპტოპის ფასი:</div>
-                    <div className="labels__second__column last">
-                        <div>შეძენის რიცხვი:</div>
-                    </div>
+                <div className="laptopgrid__data laptopgrid__data--right">
+                    <ul className="laptopgrid__labels">
+                        <li>სახელი:</li>
+                        <li>თიმი:</li>
+                        <li>პოზიცია:</li>
+                        <li>მეილი:</li>
+                        <li>ტელ.ნომერი:</li>
+                    </ul>
+                    <ul className="laptopgrid__values">
+                        <li>{laptopDetails ? `${employee?.name} ${employee?.surname}` : 'იტვირთება...'}</li>
+                        <li>{findLabelById(teams, employee?.team_id) || 'იტვირთება...'}</li>
+                        <li>{findLabelById(positions, employee?.position_id) || 'იტვირთება...'}</li>
+                        <li>{employee?.email || 'იტვირთება...'}</li>
+                        <li>{phoneNumberFormatter(employee?.phone_number || 'იტვირთება...')}</li>
+                    </ul>
                 </div>
-                <div className="values">
-                    <div className="values__first__column">
-                        <div>{laptopStateMap[laptop?.state] || 'იტვირთება...'}</div>
-                        <div>{laptop?.price || 'იტვირთება...'}</div>
-                    </div>
-                    <div className="values__second__column last">
-                        <div>{laptop ? (laptop?.purchase_date || 'არაა მითითებული') : 'იტვირთება...'}</div>
-                    </div>
+
+                <hr className="laptopdetails__horizontalbreak" />
+
+                <div className="laptopgrid__data">
+                    <ul className="laptopgrid__labels">
+                        <li>ლეპტოპის სახელი:</li>
+                        <li>ლეპტოპის ბრენდი:</li>
+                        <li>RAM:</li>
+                        <li>მეხსიერების ტიპი:</li>
+                    </ul>
+                    <ul className="laptopgrid__values">
+                        <li>{laptop?.name || 'იტვირთება...'}</li>
+                        <li>{findLabelById(brands, laptop?.brand_id) || 'იტვირთება...'}</li>
+                        <li>{laptop?.ram || 'იტვირთება...'}</li>
+                        <li>{laptop?.hard_drive_type || 'იტვირთება...'}</li>
+                    </ul>
+                </div>
+
+                <div className="laptopgrid__data laptopgrid__data--right">
+                    <ul className="laptopgrid__labels">
+                        <li>CPU:</li>
+                        <li>CPU-ს ბირთვი:</li>
+                        <li>CPU-ს ნაკადი:</li>
+                    </ul>
+                    <ul className="laptopgrid__values">
+                        <li>{laptop?.cpu.name || 'იტვირთება...'}</li>
+                        <li>{laptop?.cpu.cores || 'იტვირთება...'}</li>
+                        <li>{laptop?.cpu.threads || 'იტვირთება...'}</li>
+                    </ul>
+                </div>
+
+                <hr className="laptopdetails__horizontalbreak" />
+
+                <div className="laptopgrid__data">
+                    <ul className="laptopgrid__labels">
+                        <li>მდგომარეობა:</li>
+                        <li>ლეპტოპის ფასი:</li>
+                    </ul>
+                    <ul className="laptopgrid__values">
+                        <li>{laptopStateMap[laptop?.state] || 'იტვირთება...'}</li>
+                        <li>{laptop?.price || 'იტვირთება...'}</li>
+                    </ul>
+                </div>
+
+                <div className="laptopgrid__data laptopgrid__data--right">
+                    <ul className="laptopgrid__labels">
+                        <li>შეძენის რიცხვი:</li>
+                    </ul>
+                    <ul className="laptopgrid__values">
+                        <li>{laptop ? (laptop?.purchase_date || 'არაა მითითებული') : 'იტვირთება...'}</li>
+                    </ul>
                 </div>
             </div>
         </main>

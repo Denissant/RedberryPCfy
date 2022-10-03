@@ -1,3 +1,10 @@
+.laptops {
+    padding: 0 4vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .page__title {
     margin: 31px 0 7px;
     font-family: 'Helvetica Neue Bold', sans-serif;
@@ -7,29 +14,32 @@
     text-align: center;
 }
 
-.laptops .laptop {
-    width: 358px;
+.laptopitem {
+    display: flex;
     height: 123px;
-    margin: 26px 16px;
+    margin-top: 3vh;
+    max-width: 358px;
+    background-color: #EAFAFF;
     border: 1px solid #AED1EA;
     border-radius: 10px;
-    background-color: #EAFAFF;
-    display: flex;
 }
 
-.laptops .laptop img {
+.laptopitem:last-of-type {
+    margin-bottom: 3vh;
+}
+
+.laptopitem__image {
     margin: 7px 16px 7px 7px;
-    width: 164px;
-    height: 109px;
+    width: 46%;
     border-radius: 6px;
 }
 
-.laptop .info__wrapper {
+.laptopitem__info {
     display: flex;
     flex-direction: column;
 }
 
-.laptop .owner__name {
+.laptopitem__owner {
     margin-top: 19px;
     font-family: 'Helvetica Neue Medium', sans-serif;
     font-weight: 500;
@@ -38,7 +48,7 @@
     color: #2E2E2E;
 }
 
-.laptop .laptop__name {
+.laptopitem__name {
     margin: 8px 0 11px;
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
@@ -47,7 +57,7 @@
     color: #2E2E2E;
 }
 
-.laptop a {
+.laptopitem__link {
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -55,8 +65,15 @@
     color: #4386A9;
 }
 
+@media (min-width: 450px) {
+    .laptopitem {
+        height: 140px;
+        max-width: 400px;
+    }
 
-@media only screen and (min-width: 980px) {
+}
+
+@media (min-width: 980px) {
 
     .page__title {
         margin: 74px 0 38px;
@@ -68,35 +85,39 @@
     }
 
     .laptops {
+        padding: 0 19vw;
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        margin: 0 0 52px 371px;
+        justify-content: center;
+        row-gap: 2vw;
+        column-gap: 5vh;
     }
 
-    .laptops .laptop {
-        margin: 55px 50px 0 0;
+    .laptopitem {
         width: 560px;
+        max-width: unset;
         height: 205px;
         border-radius: 20px;
     }
 
-    .laptops .laptop img {
+    .laptopitem__image {
         margin: 14px 28px 14px 14px;
         width: 266px;
         height: 178px;
         border-radius: 10px;
     }
 
-    .laptop .owner__name {
+    .laptopitem__owner {
         margin-top: 45px;
         font-size: 18px;
     }
 
-    .laptop .laptop__name {
+    .laptopitem__name {
         margin: 18px 0 40px;
     }
 
-    .laptop a {
+    .laptopitem__link {
         font-size: 16px;
     }
 }

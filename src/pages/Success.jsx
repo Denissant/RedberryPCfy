@@ -2,12 +2,16 @@ import {Link} from "react-router-dom";
 
 function SuccessPage() {
     return (
-        <div className="success__body">
-            <div className="success__wrapper">
-                <img className="confetti" src="/assets/confetti.svg" alt="confetti" />
-                <h2>ჩანაწერი დამატებულია!</h2>
-                <Link to="/list" className="link__button">სიაში გადაყვანა</Link>
-                <Link to="/" className="link__text">მთავარი</Link>
+        <div className="success">
+            <div className="success__modal">
+                <div className="success__wrapper">
+                    <img className="success__confetti" src="/assets/confetti.svg" alt="Confetti" />
+                    <h2 className="success_text">ჩანაწერი დამატებულია!</h2>
+                </div>
+                <div className="success__wrapper">
+                    <Link to="/list" className="success__nextbtn">სიაში გადაყვანა</Link>
+                    <Link to="/" className="success__homebtn">მთავარი</Link>
+                </div>
             </div>
         </div>
     )

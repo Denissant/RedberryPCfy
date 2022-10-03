@@ -2,7 +2,6 @@ import BackButton from "../components/Back.jsx";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-
 function LaptopListPage() {
 
     // fetch data for select fields
@@ -21,12 +20,14 @@ function LaptopListPage() {
 
     const laptopElements = laptops.map( laptopData => {
         return (
-            <div key={laptopData.laptop.id} className="laptop">
-                <img src={`https://pcfy.redberryinternship.ge/${laptopData.laptop.image}`} alt="laptop-image" />
-                <div className="info__wrapper">
-                    <span className="owner__name">{laptopData.user.name} {laptopData.user.surname}</span>
-                    <span className="laptop__name">{laptopData.laptop.name}</span>
-                    <Link to={"/details/" + laptopData.laptop.id}>მეტის ნახვა</Link>
+            <div key={laptopData.laptop.id} className="laptopitem">
+                <img src={`https://pcfy.redberryinternship.ge/${laptopData.laptop.image}`}
+                     className="laptopitem__image" alt=""
+                />
+                <div className="laptopitem__info">
+                    <span className="laptopitem__owner">{laptopData.user.name} {laptopData.user.surname}</span>
+                    <span className="laptopitem__name">{laptopData.laptop.name}</span>
+                    <Link className="laptopitem__link" to={"/details/" + laptopData.laptop.id}>მეტის ნახვა</Link>
                 </div>
             </div>
         )

@@ -8,7 +8,6 @@ import ImageForm from "../components/ImageForm.jsx";
 import {useEffect, useState} from "react";
 import ImagePreview from "../components/ImagePreview.jsx";
 import RadioInput from "../components/RadioInput.jsx";
-import PriceInput from "../components/PriceInput.jsx";
 import validators from "../inputValidators.js";
 import apiParamsMap from "../apiParamsMap.js";
 import {findById} from "../utils.js";
@@ -44,21 +43,29 @@ function LaptopForm() {
     const [imagePreviewData, setImagePreviewData] = useState();
 
     return (
-        <main>
+        <main className="laptop">
             <BackButton />
-            <nav className="form__title__wrapper">
-                <span onClick={() => navigate('/new/employee')} className="form__title next">თანამშრომლის ინფო</span>
-                <span className="laptop__underline" />
-                <span className="form__title laptop current">ლეპტოპის მახასიათებლები</span>
-                <span className="form__number">2/2</span>
+            <nav className="formnav">
+                <span
+                    onClick={() => navigate('/new/employee')}
+                    className="formnav__title formnav__title--next"
+                >
+                    თანამშრომლის ინფო
+                </span>
+                <span
+                    className="formnav__title formnav__title--laptop formnav__title--current"
+                >
+                    ლეპტოპის მახასიათებლები
+                </span>
+                <span className="formnav__page">2/2</span>
             </nav>
 
-            <form className="laptop" autoComplete="off" onSubmit={handleSubmit(async () => {
+            <form className="laptop__form" autoComplete="off" onSubmit={handleSubmit(async () => {
                 const formData = new FormData();
                 formData.append('token', import.meta.env.VITE_REDBERRY_API_KEY);
 
                 const allFormValues = {...getValues(), ...JSON.parse(localStorage.getItem('employeeForm'))}
-                console.log(allFormValues)
+
                 for (let [key, value] of Object.entries(allFormValues)) {
                     if (key === 'date' || key === 'phone') value = value.replace(/\s+/g, '');
                     formData.append(apiParamsMap[key], value);
@@ -80,7 +87,7 @@ function LaptopForm() {
                 }
             })}>
 
-                <div className="form__section">
+                <div className="laptop__section">
                     {
                         imagePreviewData &&
                         <ImagePreview
@@ -99,43 +106,45 @@ function LaptopForm() {
                         setImagePreviewData={setImagePreviewData}
                     />
 
-                    <TextInput
-                        className="half"
-                        name="laptopName"
-                        label="ლეპტოპის სახელი"
-                        placeholder="HP"
-                        hint="ლათინური ასოები, ციფრები, !@#$%^&*()_+="
-                        validate={{laptopName: validators.laptopName}}
-                        errors={errors}
-                        register={register}
-                    />
+                    <div className="laptop__row">
+                        <TextInput
+                            name="laptopName"
+                            label="ლეპტოპის სახელი"
+                            placeholder="HP"
+                            hint="ლათინური ასოები, ციფრები, !@#$%^&*()_+="
+                            validate={{laptopName: validators.laptopName}}
+                            errors={errors}
+                            register={register}
+                        />
 
-                    <Controller
-                        control={control}
-                        rules={{required: true}}
-                        name="brand"
-                        render={({ field: { onChange, ref } }) => (
-                            <Select
-                                options={brandOptions}
-                                isSearchable={false}
-                                value={findById(brandOptions, getValues('brand'))}
-                                name="brand"
-                                placeholder="ლეპტოპის ბრენდი"
-                                className={"dropdown dropdown__half" + (errors?.brand ? ' invalid' : '')}
-                                classNamePrefix='dropdown'
-                                inputRef={ref}
-                                onChange={val => onChange(val.value)}
-                            />
-                        )}
-                    />
+                        <Controller
+                            control={control}
+                            rules={{required: true}}
+                            name="brand"
+                            render={({ field: { onChange, ref } }) => (
+                                <Select
+                                    options={brandOptions}
+                                    isSearchable={false}
+                                    value={findById(brandOptions, getValues('brand'))}
+                                    name="brand"
+                                    placeholder="ლეპტოპის ბრენდი"
+                                    className={"dropdown" + (errors?.brand ? ' invalid' : '')}
+                                    classNamePrefix='dropdown'
+                                    inputRef={ref}
+                                    onChange={val => onChange(val.value)}
+                                />
+                            )}
+                        />
+                    </div>
 
                 </div>
 
-                <hr />
+                <hr className="laptop__horizontalbreak" />
 
-                <div className="form__section">
+                <div className="laptop__section">
 
-                    <div className="three__inputs__wrapper">
+                    <div className="laptop__row laptop__row--three">
+
                         <Controller
                             control={control}
                             rules={{required: true}}
@@ -147,7 +156,7 @@ function LaptopForm() {
                                     value={cpuOptions.find(item => item.label === getValues('cpu'))}
                                     name="cpu"
                                     placeholder="CPU"
-                                    className={"dropdown dropdown__third" + (errors?.cpu ? ' invalid' : '')}
+                                    className={"dropdown" + (errors?.cpu ? ' invalid' : '')}
                                     classNamePrefix='dropdown'
                                     inputRef={ref}
                                     onChange={val => onChange(val.label)}
@@ -156,7 +165,6 @@ function LaptopForm() {
                         />
 
                         <TextInput
-                            className="third"
                             name="cpuCores"
                             label="CPU-ს ბირთვი"
                             placeholder="14"
@@ -167,7 +175,6 @@ function LaptopForm() {
                         />
 
                         <TextInput
-                            className="third"
                             name="cpuThreads"
                             label="CPU-ს ნაკადი"
                             placeholder="365"
@@ -176,11 +183,12 @@ function LaptopForm() {
                             errors={errors}
                             register={register}
                         />
+
                     </div>
 
-                    <div className="name__inputs__wrapper">
+                    <div className="laptop__row">
+
                         <TextInput
-                            className="half"
                             name="ram"
                             label="ლეპტოპის RAM (GB)"
                             placeholder="16"
@@ -191,7 +199,6 @@ function LaptopForm() {
                         />
 
                         <RadioInput
-                            className="radio half"
                             name="storage"
                             label="მეხსიერების ტიპი"
                             options={[{label: 'SSD', value: 'SSD'}, {label: 'HDD', value: 'HDD'}]}
@@ -203,11 +210,11 @@ function LaptopForm() {
 
                 </div>
 
-                <hr />
+                <hr className="laptop__horizontalbreak" />
 
-                <div className="form__section">
+                <div className="laptop__section">
 
-                    <div className="name__inputs__wrapper">
+                    <div className="laptop__row">
 
                         <TextInput
                             name="date"
@@ -221,7 +228,8 @@ function LaptopForm() {
                             errors={errors}
                             register={register}
                         />
-                        <PriceInput
+                        <TextInput
+                            className="inputblock--price"
                             name="price"
                             label="ლეპტოპის ფასი"
                             placeholder="0000"
@@ -233,25 +241,30 @@ function LaptopForm() {
 
                     </div>
 
-                    <RadioInput
-                        name="state"
-                        label="ლეპტოპის მდგომარეობა"
-                        options={[{label: 'ახალი', value: 'new'}, {label: 'მეორადი', value: 'used'}]}
-                        errors={errors}
-                        register={register}
-                    />
+                    <div className="laptop__row">
 
-                    <Link to={'/new/employee'} className="back__to__employee">უკან</Link>
-                    <input type="submit" value="დამახსოვრება" className="submit laptop" />
+                        <RadioInput
+                            name="state"
+                            label="ლეპტოპის მდგომარეობა"
+                            options={[{label: 'ახალი', value: 'new'}, {label: 'მეორადი', value: 'used'}]}
+                            errors={errors}
+                            register={register}
+                        />
+
+                    </div>
+
+                    <div className="laptop__submit--wrapper">
+                        <Link to={'/new/employee'} className="laptop__back">უკან</Link>
+                        <input type="submit" value="დამახსოვრება" className="laptop__submit" />
+                    </div>
 
                 </div>
 
 
             </form>
-
-                <div className="relative">
-                <img src="/assets/redberry_circle_logo.png" className="redberry__logo__circle" alt="redberry-logo" />
-            </div>
+            <picture className="redberry__logo--wrapper">
+                <img src="/assets/redberry_circle_logo.png" className="redberry__logo" alt="Redberry Logo" />
+            </picture>
         </main>
     )
 }

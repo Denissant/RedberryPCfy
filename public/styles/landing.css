@@ -1,70 +1,100 @@
-* {
-    margin: 0;
-    padding: 0;
+.landing {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 100vh;
+    padding: 8vh 4vw 4vh;
 }
 
-.horizontal__center > * {
-    position: absolute;
-}
-
-#redberry__logo {
-    top: 7.94%;
+.landing__logo {
+    align-self: center;
     width: 112px;
     height: 18px;
 }
 
-#landing__image {
-    top: 23.93%;
-    width: 68.72%;
-    height: 41.35%;
-    background: url("../assets/landing_image_mobile.png") no-repeat center;
-    background-size: contain;
+.hero {
+    display: flex;
+    justify-content: center;
+    margin-top: 14vh;
 }
 
-#buttons {
-    top: 79.74%;
+.hero__image {
+    width: 75%;
+    max-width: 350px;
+}
+
+.landing__buttons {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    gap: 16px;
 }
 
-.button__large {
+.landing__button {
     outline: none;
     border: none;
     background-color: #62A1EB;
     color: #FFFFFF;
     font-family: 'Helvetica Neue', sans-serif;
-    width: 358px;
-    height: 60px;
+    width: 100%;
+    max-width: 358px;
+    min-height: 60px;
     padding: 18px 60px;
-    margin-bottom: 16px;
     font-size: 20px;
     line-height: 24px;
     border-radius: 8px;
     cursor: pointer;
 }
 
+.file__upload__button:hover,
+.landing__button:hover,
+.employee__submit:hover,
+.laptop__submit:hover {
+    background-color: #317AD0;
+}
 
-@media only screen and (min-width: 980px) {
+.file__upload__button:focus,
+.landing__button:focus,
+.employee__submit:focus,
+.laptop__submit:focus {
+    background-color: #1A5DAB;
+}
 
-    #redberry__logo {
-        top: 7.31%;
+
+@media (min-width: 450px) {
+    .landing__buttons {
+        margin-top: 10vh;
+    }
+}
+
+@media (min-width: 980px) {
+    .landing {
+        padding: 7vh 0 14vh;
+        justify-content: space-between;
     }
 
-    #landing__image {
-        top: 16.85%;
-        left: 30.68%;
-        width: 40.68%;
-        height: 44.63%;
-        background-image: url("../assets/landing_image.png");
+    .hero {
+        margin-top: 8vh;
     }
 
-    #buttons {
-        top: 72.87%;
+    .hero {
+        margin-top: unset;
+        margin-bottom: 2%;
     }
 
-    .button__large {
-        width: 387px;
-        margin-bottom: 26px;
+    .hero__image {
+        width: 40%;
+        max-width: unset;
+        margin-left: 3vw;
     }
 
+    .landing__buttons {
+        margin-top: unset;
+        gap: 26px;
+    }
+
+    .landing__button {
+        max-width: 387px
+    }
 }
